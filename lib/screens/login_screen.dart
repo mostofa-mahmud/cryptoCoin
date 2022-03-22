@@ -42,7 +42,7 @@ class LoginScreenState extends State<LoginScreen> {
     appStore.setIsLoading(true);
 
     await authService.signInWithGoogle().then(
-      (value) {
+          (value) {
         appStore.setIsLoading(false);
         toast("lbl_successfully_login".translate);
         appStore.setIsLoading(false);
@@ -55,7 +55,7 @@ class LoginScreenState extends State<LoginScreen> {
         }
       },
     ).catchError(
-      (e) {
+          (e) {
         appStore.setIsLoading(false);
         toast(e.toString());
         throw e;
@@ -140,61 +140,77 @@ class LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       40.height,
-                      AppTextField(
-                        controller: emailCont,
-                        textFieldType: TextFieldType.EMAIL,
-                        autoFocus: false,
-                        focus: emailFocus,
-                        nextFocus: passFocus,
-                        decoration: AppCommon.inputDecoration('lbl_email'.translate),
-                      ),
-                      16.height,
-                      AppTextField(
-                        controller: passCont,
-                        textFieldType: TextFieldType.PASSWORD,
-                        focus: passFocus,
-                        decoration: AppCommon.inputDecoration('lbl_password'.translate),
-                      ),
-                      16.height,
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          child: Text('lbl_forgot_password'.translate, style: boldTextStyle(color: secondaryColor, size: 14)),
-                          onPressed: () {
-                            showInDialog(
-                              context,
-                              contentPadding: EdgeInsets.all(0),
-                              backgroundColor: context.cardColor,
-                              builder: (_) => ForgotPasswordComponent(),
-                              dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
-                            );
-                          },
-                        ),
-                      ),
-                      16.height,
+                      // AppTextField(
+                      //   controller: emailCont,
+                      //   textFieldType: TextFieldType.EMAIL,
+                      //   autoFocus: false,
+                      //   focus: emailFocus,
+                      //   nextFocus: passFocus,
+                      //   decoration: AppCommon.inputDecoration('lbl_email'.translate),
+                      // ),
+                      // 16.height,
+                      // AppTextField(
+                      //   controller: passCont,
+                      //   textFieldType: TextFieldType.PASSWORD,
+                      //   focus: passFocus,
+                      //   decoration: AppCommon.inputDecoration('lbl_password'.translate),
+                      // ),
+                      // 16.height,
+                      // Align(
+                      //   alignment: Alignment.centerRight,
+                      //   child: TextButton(
+                      //     child: Text('lbl_forgot_password'.translate, style: boldTextStyle(color: secondaryColor, size: 14)),
+                      //     onPressed: () {
+                      //       showInDialog(
+                      //         context,
+                      //         contentPadding: EdgeInsets.all(0),
+                      //         backgroundColor: context.cardColor,
+                      //         builder: (_) => ForgotPasswordComponent(),
+                      //         dialogAnimation: DialogAnimation.SLIDE_BOTTOM_TOP,
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
+                      // 16.height,
+
+
                       AppButton(
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: boxDecorationWithRoundedCorners(borderRadius: radius(30), backgroundColor: white),
+                              padding: EdgeInsets.all(8),
+                              child: GoogleLogoWidget().onTap(() {
+                                loginWithGoogle();
+                              }),
+                            ).paddingAll(16),
+                            SizedBox(width: 20,),
+                            Text("lbl_sign_in".translate),
+                          ],
+                        ),
                         width: context.width(),
                         height: 45,
                         color: secondaryColor,
                         padding: EdgeInsets.symmetric(horizontal: 32),
-                        text: 'lbl_sign_in'.translate,
+                        //text: 'lbl_sign_in'.translate,
                         shapeBorder: RoundedRectangleBorder(borderRadius: radius(defaultRadius)),
                         onTap: () {
-                          submit();
+                          //submit();
+                          loginWithGoogle();
                         },
                       ),
                       8.height,
                     ],
                   ).center(),
-                  16.height,
-                  Text("or_sign_in_another_account".translate, style: secondaryTextStyle()),
-                  Container(
-                    decoration: boxDecorationWithRoundedCorners(borderRadius: radius(30), backgroundColor: white),
-                    padding: EdgeInsets.all(8),
-                    child: GoogleLogoWidget().onTap(() {
-                      loginWithGoogle();
-                    }),
-                  ).paddingAll(16),
+                  // 16.height,
+                  // Text("or_sign_in_another_account".translate, style: secondaryTextStyle()),
+                  // Container(
+                  //   decoration: boxDecorationWithRoundedCorners(borderRadius: radius(30), backgroundColor: white),
+                  //   padding: EdgeInsets.all(8),
+                  //   child: GoogleLogoWidget().onTap(() {
+                  //     loginWithGoogle();
+                  //   }),
+                  // ).paddingAll(16),
                 ],
               ).paddingAll(16),
             ),
