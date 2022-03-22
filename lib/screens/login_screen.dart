@@ -200,6 +200,31 @@ class LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       8.height,
+                      AppButton(
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: boxDecorationWithRoundedCorners(borderRadius: radius(30), backgroundColor: white),
+                              padding: EdgeInsets.all(8),
+                              child: Icon(Icons.facebook).onTap(() {
+                                loginWithGoogle();
+                              }),
+                            ).paddingAll(16),
+                            SizedBox(width: 20,),
+                            Text("lbl_sign_in".translate),
+                          ],
+                        ),
+                        width: context.width(),
+                        height: 45,
+                        color: secondaryColor,
+                        padding: EdgeInsets.symmetric(horizontal: 32),
+                        //text: 'lbl_sign_in'.translate,
+                        shapeBorder: RoundedRectangleBorder(borderRadius: radius(defaultRadius)),
+                        onTap: () {
+                          //submit();
+                          loginWithGoogle();
+                        },
+                      ),
                     ],
                   ).center(),
                   // 16.height,

@@ -66,6 +66,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+  flutter_facebook_auth: ^4.1.2
 
 
 
